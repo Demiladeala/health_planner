@@ -6,10 +6,10 @@ import { API } from '../pages/Home';
 import toast, { Toaster } from 'react-hot-toast';
 
 const ErrorModal = ({ message, onClose }) => (
-    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-black bg-opacity-50">
-        <div className="relative bg-white overflow-x-hidden px-4 lg:px-6 py-6 rounded-lg w-[90%] lg:w-1/2 h-auto max-lg:mt-5">
+    <div className="fixed h-full inset-0 z-50 flex items-center justify-center overflow-hidden bg-black bg-opacity-50">
+        <div className="relative bg-white overflow-x-hidden px-4 lg:px-6 py-6 rounded-lg w-[90%] lg:w-1/2 max-lg:mt-5">
             <h2 className="text-xl font-semibold mb-4">Error</h2>
-            <p className="max-md:text-sm">{message}</p>
+            <p className="max-md:text-xs h-full flex flex-col flex-wrap">{message}</p>
             <div className="mt-4 flex justify-end">
                 <button onClick={onClose} className="px-4 py-2 bg-red-500 text-white rounded-lg">Close</button>
             </div>
