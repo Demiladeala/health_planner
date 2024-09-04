@@ -104,6 +104,7 @@ const Login = ({ handleSignUpClick, handleBackClick }) => {
 
       <h1 className='mt-6 font-bold text-3xl'>Welcome Back</h1>
       <form onSubmit={handleSubmit} className='mt-4'>
+
         <div>
           <input
             type='email'
@@ -117,26 +118,29 @@ const Login = ({ handleSignUpClick, handleBackClick }) => {
           />
           {errors.email && <p className="text-red-500 mt-1 text-xs text-left">{errors.email}</p>}
         </div>
-        <div className='relative'>
+
+        <div className={`relative flex items-start mt-2 border rounded-lg ${
+          errors.password ? 'border-red-500' : 'border-gray-300'
+            }`}>
           <input
             type={showPassword ? 'text' : 'password'} // Toggle input type
             name='password'
             value={formData.password}
             onChange={handleChange}
             placeholder='Password'
-            className={`w-full mt-2 p-3 border rounded-lg ${
-              errors.password ? 'border-red-500' : 'border-gray-300'
-            }`}
+            className='w-[88%] p-3 outline-none bg-transparent'
           />
           <button
             type='button'
             onClick={() => setShowPassword(prev => !prev)} // Toggle password visibility
-            className='absolute top-2 inset-y-0 right-0 flex items-center px-3 text-gray-500'
+            className={`z-[3] absolute w-[12%] top-2 right-1 ${errors.password && "" } 
+            inset-y-0 right-0 flex items-center text-gray-500`}
           >
             {showPassword ? 'Hide' : 'Show'}
           </button>
-          {errors.password && <p className="text-red-500 mt-1 text-xs text-left">{errors.password}</p>}
         </div>
+        {errors.password && <p className="text-red-500 text-xs text-left mt-2">{errors.password}</p>}
+
         <button
           type='submit'
           className={`mt-4 w-full bg-primary-blue py-3 text-black rounded-lg ${
