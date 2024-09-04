@@ -31,7 +31,7 @@ const Home = () => {
         </div>
 
         <div className={`z-[1] onboarding-text relative w-full max-lg:w-[90%] h-auto m-auto
-          border-2 bg-white border-purple py-9 lg:py-20 px-12 rounded-xl transition-transform duration-500 ease-in-out`}>
+          border-2 bg-white border-purple py-9 lg:py-20 px-5 lg:px-12 rounded-xl transition-transform duration-500 ease-in-out`}>
           <div className='mx-auto text-primary-black text-center'
           >
             {view === 'onboarding' && (

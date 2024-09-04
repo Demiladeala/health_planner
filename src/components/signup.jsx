@@ -135,7 +135,7 @@ const Signup = ({handleSignInClick, handleBackClick}) => {
               <button
                 type='button'
                 onClick={() => setShowPassword(prev => !prev)} // Toggle password visibility
-                className={`z-[3] absolute w-[12%] top-2 right-1 ${errors.password && "" } 
+                className={`z-[3] absolute w-[12%] top-2 right-3 lg:right-1 ${errors.password && "" } 
                 inset-y-0 right-0 flex items-center text-gray-500`}
               >
                 {showPassword ? 'Hide' : 'Show'}
