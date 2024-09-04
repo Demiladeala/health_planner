@@ -9,6 +9,7 @@ import { useWebSocket } from '../context/WebSocketContext';
 const Login = ({ handleSignUpClick, handleBackClick }) => {
   const { setWsToken, setName } = useWebSocket();
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -116,9 +117,9 @@ const Login = ({ handleSignUpClick, handleBackClick }) => {
           />
           {errors.email && <p className="text-red-500 mt-1 text-xs text-left">{errors.email}</p>}
         </div>
-        <div>
+        <div className='relative'>
           <input
-            type='password'
+            type={showPassword ? 'text' : 'password'} // Toggle input type
             name='password'
             value={formData.password}
             onChange={handleChange}
@@ -127,6 +128,13 @@ const Login = ({ handleSignUpClick, handleBackClick }) => {
               errors.password ? 'border-red-500' : 'border-gray-300'
             }`}
           />
+          <button
+            type='button'
+            onClick={() => setShowPassword(prev => !prev)} // Toggle password visibility
+            className='absolute top-2 inset-y-0 right-0 flex items-center px-3 text-gray-500'
+          >
+            {showPassword ? 'Hide' : 'Show'}
+          </button>
           {errors.password && <p className="text-red-500 mt-1 text-xs text-left">{errors.password}</p>}
         </div>
         <button

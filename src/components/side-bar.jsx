@@ -213,7 +213,7 @@ const Sidebar = () => {
                                 className="w-full h-full object-cover rounded-full border"
                             />
                         </div>
-                        <h3>{name}</h3>
+                        <h3 className="text-sm">{name}</h3>
                     </div>
                     <div className="pt-3">
                         <button

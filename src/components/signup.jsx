@@ -5,7 +5,8 @@ import toast, { Toaster } from 'react-hot-toast';
 import { FaArrowLeft } from 'react-icons/fa6';
 
 const Signup = ({handleSignInClick, handleBackClick}) => {
-    const [formData, setFormData] = useState({
+  const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
         username: '',
         email: '',
         password: '',
@@ -120,18 +121,25 @@ const Signup = ({handleSignInClick, handleBackClick}) => {
                 {errors.email && <p className="text-red-500 mt-1 text-xs text-left">{errors.email}</p>}
             </div>
 
-            <div>
-                <input
-                type="password"
-                name="password"
+            <div className='relative'>
+              <input
+                type={showPassword ? 'text' : 'password'} // Toggle input type
+                name='password'
                 value={formData.password}
                 onChange={handleChange}
-                placeholder="Password"
-                className={`w-full px-4 py-3 border rounded-lg ${
-                    errors.password ? 'border-red-500' : 'border-gray-300'
+                placeholder='Password'
+                className={`w-full mt-2 p-3 border rounded-lg ${
+                  errors.password ? 'border-red-500' : 'border-gray-300'
                 }`}
-                />
-                {errors.password && <p className="text-red-500 mt-1 text-xs text-left">{errors.password}</p>}
+              />
+              <button
+                type='button'
+                onClick={() => setShowPassword(prev => !prev)} // Toggle password visibility
+                className='absolute top-2 inset-y-0 right-0 flex items-center px-3 text-gray-500'
+              >
+                {showPassword ? 'Hide' : 'Show'}
+              </button>
+              {errors.password && <p className="text-red-500 mt-1 text-xs text-left">{errors.password}</p>}
             </div>
 
             <button
