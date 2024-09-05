@@ -109,7 +109,7 @@ const Sidebar = () => {
                 </div>
 
                 <h4 className="text-sm font-medium text-gray-800">Meal and fitness 
-                    <br className="md:hidden"/>planner.</h4>
+                    <br className="md:hidden"/>&nbsp;planner.</h4>
             </div>
                 
             <div className="lg:hidden mb-2 top-4 right-4 ">

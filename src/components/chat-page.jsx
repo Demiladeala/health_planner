@@ -3,7 +3,7 @@ import { useWebSocket } from '../context/WebSocketContext';
 import { BsChatSquareHeart } from 'react-icons/bs';
 import { MdNetworkCheck, MdSend } from 'react-icons/md';
 import { API } from '../pages/Home';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const ErrorModal = ({ message, onClose }) => (
     <div className="fixed h-full inset-0 z-50 flex items-center justify-center overflow-hidden bg-black bg-opacity-50">
@@ -94,6 +94,9 @@ const ChatPage = () => {
 
             return () => socket.close();
         }
+        else {
+            console.error("WebSocket token is missing!");
+        }
     }, [wsToken]);
     
 
@@ -113,7 +116,7 @@ const ChatPage = () => {
     };
 
     if (!isConnected && !networkLost) {
-        return <div className='w-full h-screen flex items-center justify-center'>
+        return <div className='w-full h-[80vh] flex items-center justify-center'>
                 <div className='flex flex-col gap-2'>
                     {wsToken === null ?
                     <>
