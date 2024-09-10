@@ -5,6 +5,17 @@ import { MdNetworkCheck, MdSend } from 'react-icons/md';
 import { API } from '../pages/Home';
 import toast from 'react-hot-toast';
 
+const clearAllCookies = () => {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i];
+        const eqPos = cookie.indexOf('=');
+        const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+    }
+};
+
+
 const ErrorModal = ({ message, onClose }) => (
     <div className="fixed h-full inset-0 z-50 flex items-center justify-center overflow-hidden bg-black bg-opacity-50">
         <div className="relative bg-white overflow-x-hidden px-4 lg:px-6 py-6 rounded-lg w-[90%] lg:w-1/2 max-lg:mt-5">
@@ -95,6 +106,7 @@ const ChatPage = () => {
             return () => socket.close();
         }
         else {
+            clearAllCookies();
             console.error("WebSocket token is missing!");
         }
     }, [wsToken]);
