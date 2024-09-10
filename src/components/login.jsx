@@ -6,6 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa6';
 import { useWebSocket } from '../context/WebSocketContext';
 
+const clearCookies = () => {
+  const cookies = document.cookie.split("; ");
+  cookies.forEach(cookie => {
+    const [name] = cookie.split("=");
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  });
+};
+
 const Login = ({ handleSignUpClick, handleBackClick }) => {
   const { setWsToken, setName } = useWebSocket();
   const navigate = useNavigate();
@@ -77,19 +85,19 @@ const Login = ({ handleSignUpClick, handleBackClick }) => {
       console.error('Login error', error.response?.data || error.message);
       if (error.response) {
         const { status, data } = error.response;
-        if (status === 400 || status === 404 || status === 401) {
-          // Display the error message from the API response
+        if (status === 401) {
+          // Clear cookies on 401 error
+          clearCookies();
+          toast.error('Unauthorized access. Please login again.');
+        } else if (status === 400 || status === 404) {
           const errorMessage = data.message || data.detail.msg || 'An error occurred. Please try again.';
           toast.error(errorMessage);
         } else {
-          // Handle other errors
-          toast.error('Failed to Login. Please try again.');
+          toast.error('Failed to login. Please try again.');
         }
       } else {
-        // Handle cases where there is no response from the server
         toast.error('An unexpected error occurred. Please try again.');
       }
-      console.error('Sign up error', error.response.data);
     } finally {
       setIsLoading(false);
     }
